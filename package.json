@@ -1,0 +1,22 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "bamazon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaanderson1/bamazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aaanderson1/bamazon/issues"
+  },
+  "homepage": "https://github.com/aaanderson1/bamazon#readme",
+  "dependencies": {
+    "mysql": "^2.17.1"
+  }
+}
