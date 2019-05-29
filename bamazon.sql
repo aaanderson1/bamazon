@@ -4,14 +4,14 @@ CREATE DATABASE bamazon;
 USE bamazon;
 
 create table products (
-  item_id int(11) NOT NULL AUTO_INCREMENT,
+  item_id int(1) NOT NULL AUTO_INCREMENT,
   product_name varchar(255) DEFAULT NULL,
   department_name varchar(255) NOT NULL,
-  price varchar(45) DEFAULT '0.0',
-  stock_quantity int(11) NOT NULL,
+  price decimal(6, 2) default 0.0,
+  stock_quantity int(10) NOT NULL,
   PRIMARY KEY (item_id),
   UNIQUE KEY item_id_UNIQUE (item_id)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=ascii;
 
 insert into products (product_name, department_name, price, stock_quantity)
 values ("Gum", "Food", 2.05, 1000);
