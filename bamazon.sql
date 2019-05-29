@@ -42,3 +42,18 @@ values ("Recliner", "Furniture", 1099.50, 10);
 
 insert into products (product_name, department_name, price, stock_quantity)
 values ("Camera", "Electronics", 609.55, 7);
+
+insert into products (product_name, department_name, price, stock_quantity)
+values ("Lockbox", "Home", 250.55, 10);
+
+insert into products (product_name, department_name, price, stock_quantity)
+values ("iPhone", "Electronics", 520.44, 14);
+
+insert into products (product_name, department_name, price, stock_quantity)
+values ("Television", "Electronics", 1575.99, 10);
+
+insert into products (product_name, department_name, price, stock_quantity)
+values ("Futon", "Home", 245.55, 15);
+
+insert into products (product_name, department_name, price, stock_quantity)
+values ("Clock", "Home", 110.50, 15);
