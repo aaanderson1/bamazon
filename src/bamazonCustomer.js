@@ -21,7 +21,6 @@ connection.connect((err) => {
     if (err) throw err;
     // run the start function after the connection is made to prompt the user
     main();
-    connection.end();
 });
 
 const logInfo = (info) => {
@@ -37,15 +36,80 @@ const print = (str) => {
 };
 
 const main = () => {
-    showProducts();
+    showProducts(() => promptUser(selectID));
 
 };
 
-const showProducts = () => {
-    connection.query("select * from products", (err, products) => {
+const promptUser = (next) => {
+    inquirer.prompt([{
+        name: "id", 
+        message: "Which item ID are you purchasing?"
+    }]).then(next);
+};
+
+const showProducts = (next) => {
+    getProducts((products) => {
         const padding = String(products.length).length;
         for (const product of products) {
             print(`Id: ${String(product.item_id).padStart(padding, "0")} | Name: ${product.product_name} | Price: ${product.price} | Inventory: ${product.stock_quantity}`);
         }
+        if (!!next){
+            next();
+        }
     });
 };
+
+const selectID = (answer) => {
+    inquirer.prompt([{
+        name: "amount", 
+        message: "Quantity?"
+    }]).then((innerAnswer) => purchaseProducts(parseInt(answer.id), parseInt(innerAnswer.amount)));
+};
+
+const purchaseProducts = (id, amount) => {
+    getProducts((products) => { 
+        let handled = false;
+        for (const product of products) {
+            if (product.item_id !== id) {
+                continue;
+            }
+            handled = true;
+            if (product.stock_quantity < amount) {
+                logError(`Insufficient quantity for selected Id: ${id}`);
+                break;
+            }
+
+            updateProduct(id, product.stock_quantity - amount, (err) => {
+                if (!!err) {
+                    logError(err);
+                } else {
+                    print(`Successfully purchased ${amount} of product: ${id} for $${(product.price * amount).toFixed(2)}`);
+                }
+                connection.end();
+            });
+
+            return;
+        }
+        if (!handled) {
+            logError(`Id: ${id} not found.`);
+            
+        }
+        connection.end();
+    });
+    
+};
+
+const updateProduct = (id, newQuantity, next) => {
+    connection.query(`update products set stock_quantity = ${newQuantity} where item_id = ${id}`, next);
+}
+
+const getProducts = (next) => {
+    connection.query("select * from products", (err, products) => {
+        if (!!err) {
+            logError(err);
+            connection.end();
+            return;
+        }
+        next(products);
+    });
+}
