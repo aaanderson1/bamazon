@@ -1,4 +1,4 @@
-## Bamazon
+## "Bamazon" Virtual Storefront Inventory System
 **Creator**: `Allison Anderson`
 
 - - -
