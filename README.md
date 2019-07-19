@@ -11,7 +11,7 @@
 • You can purchase or replenish inventory using the Terminal
 
 ### **Step by Step instructions**
-This app is not currently hosted live online. However, theoretically it works very simply in the terminal and by following the prompts. Screenshots below:
+This app is not currently hosted live online. However, theoretically it works very simply in the terminal and by following the prompts. Screenshot below to get a visual idea:
 
 1. Open terminal
 
